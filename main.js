@@ -10,6 +10,7 @@ getPort().then(port => {
   });
 
   dkimcoin.startP2PServer(server);
+  global.sharedPort = port;
 });
 
 const { app, BrowserWindow } = electron;
