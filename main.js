@@ -1,13 +1,16 @@
 const electron = require("electron"),
   path = require("path"),
   url = require("url"),
+  getPort = require("get-port"),
   dkimcoin = require("./dkimcoin/src/server");
 
-const server = dkimcoin.app.listen(4000, () => {
-  console.log("running localhost4000");
-});
+getPort().then(port => {
+  const server = dkimcoin.app.listen(port, () => {
+    console.log(`Running blockchain node on: http://localhost:${port}`);
+  });
 
-dkimcoin.startP2PServer(server);
+  dkimcoin.startP2PServer(server);
+});
 
 const { app, BrowserWindow } = electron;
 
