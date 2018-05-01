@@ -1,7 +1,7 @@
 {
   "scripts": {
-    "start": "concurrently --kill-others \"electron .\"",
-    "startReact": "cd uidev && yarn start",
+    "start": "concurrently --kill-others \" yarn run startReact \" \"electron .\"",
+    "startReact": "cd uidev && npm start",
     "startBuild": "cd uidev && yarn build"
   },
   "main": "main.js",
