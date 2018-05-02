@@ -1,13 +1,18 @@
 {
+  "name": "Dkimcoin-Wallet",
+  "productName": "Dkimcoin Wallet",
   "scripts": {
     "start": "concurrently --kill-others \" yarn run startReact \" \"electron .\"",
     "startReact": "cd uidev && npm start",
-    "startBuild": "cd uidev && yarn build"
+    "build": "electron-packager . --prune=false --ignore=/uidev --overwrite --out=dist",
+    "prebuild": "yarn run deleteWallet && cd uidev && npm run build",
+    "deleteWallet": "rm -rf dkimcoin/src/privateKey"
   },
   "main": "main.js",
   "devDependencies": {
     "concurrently": "^3.5.1",
-    "electron": "^1.8.6"
+    "electron": "^1.8.6",
+    "electron-packager": "^12.0.1"
   },
   "dependencies": {
     "get-port": "^3.2.0"
